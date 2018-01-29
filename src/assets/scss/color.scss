@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+$bodyBgColor: #f1f1f1;
+$green: #5FBDAB;
+$blue: #1AA0FF;
+$red: #F15949;
+$yellow: #FDB933;
+$gray: #666;
+$lightGray: #999;
+$black: #333;
+$white: #fff;
+$borderColor: #D5D5D5;
+$activeColor: $green;
+$fontBlackColor: $gray;
+$fontLightColor: #C2C2C2;
+
+$lineHeight: 66px;
+
+$borderRadius: 4px;
+$fontSize: 14px;
+$maskColor: rgba(0, 0, 0, 0.8);
+
+.red {
+  color: $red !important;
+}
+
+.green {
+  color: $green !important;
+}
+
+.yellow {
+  color: $yellow !important;
+}
+
+.blue {
+  color: $blue !important;
+}
+
+.gray {
+  color: #cccccc !important;
+}

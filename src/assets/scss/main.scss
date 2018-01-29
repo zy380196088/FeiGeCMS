@@ -1,0 +1,43 @@
+@charset "UTF-8";
+@import "color";
+@import "common";
+$activeColor: #5fbdab;
+$AppBgColor: #f5f5f5;
+$btnFontColor:#999;
+$ComponentBgColor: #fff;
+$headerHeight: 56px;
+$lineHeight: 36px;
+$fontSize: 12px;
+$errorColor: #f15949;
+$warnColor :#fdb933;
+$infoColor: $activeColor;
+$successColor: #1aa0ff;
+.error {
+    color: $errorColor !important;
+}
+
+.warn {
+    color: $warnColor !important;
+}
+
+.info {
+    color: $activeColor !important;
+}
+
+.success {
+    color: $successColor !important;
+}
+
+.btn {
+    border: 1px solid $btnFontColor;
+    color: $btnFontColor;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    border: 1px solid $green;
+    color: $green
+}
