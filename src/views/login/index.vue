@@ -4,61 +4,55 @@
     <el-form ref="loginForm">
       <el-form-item label="手机号">
         <span></span>
-        <el-input name="login_name" type="text" v-model=""></el-input>
+        <el-input name="login_name" type="text"></el-input>
+      </el-form-item>
+      <el-form-item label="密码">
+        <el-input name="login_password" type="text"></el-input>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import {isvalidUsername} from '@/utils/validate'
-  const validateUserName = (rule, value, callback)=> {
-    if (!isvalidUsername(value)) {
-      callback(new Error('请输入正确的用户名'))
-    } else {
-      callback()
-    }
-  };
-  export default{
+  export default {
+    name: "login",
     components: {},
-    name: 'login',
-    data(){
+    data() {
       return {
         loading: false,
         showDialog: false,
         loginForm: {
-          loginName: 'admin',
-          password: '123456'
+          loginName: "admin",
+          password: "123456"
         },
         loginRules: {
           userName: [{
             required: true,
-            trigger: 'blur',
-            validator: ''
+            trigger: "blur",
+            validator: ""
           }],
           password: [{
             required: true,
-            trigger: 'blur',
-            validator: ''
+            trigger: "blur",
+            validator: ""
           }]
         }
-      }
+      };
     },
     methods: {
-      showPassword(){
-        if (this.pwdType === 'password') {
-          this.pwdType = ''
+      showPassword() {
+        if (this.pwdType === "password") {
+          this.pwdType = "";
         } else {
-          this.pwdType = 'password'
+          this.pwdType = "password";
         }
-      },
-      handleLogin(){
-//
-      },
+      }
     }
-  }
+  };
+
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+
 
 </style>

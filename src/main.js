@@ -13,23 +13,56 @@ Vue.config.debug = true;
 Vue.config.productionTip = false;
 Vue.use(router);
 Vue.use(ElementUI);
-Vue.use(VueAxios,axios);
-// Vue.prototype.$http = axios;
+Vue.use(VueAxios, axios);
 
-Vue.filter('percent',function (value) {
-  if(typeof value =='number'){
-    return (value/100).toFixed(2) + '%';
-  }else{
-    return 0;
-  }
+//axios 配置
+axios.defaults.timeout = 5000;
+
+Vue.filter('percent', function(value) {
+    if (typeof value == 'number') {
+        return (value / 100).toFixed(2) + '%';
+    } else {
+        return 0;
+    }
 });
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  store,
-  template: '<App/>',
-  components: { App }
+    el: '#app',
+    router,
+    store,
+    ElementUI,
+    template: '<App/>',
+    components: { App }
 });
+//http request 拦截器
+axios.interceptors.request.use(
+    config => {
+        if (store.state.token) {
+            config.headers.Authorization = `token ${store.state.token}`
+        }
+        return config
+    },
+    err => {
+        return Promise.reject(err)
+    }
+)
 
+//http response 拦截器
+axios.interceptors.response.use(
+    response => {
+        console.log(response)
+        return response
+    },
+    error => {
+        if (error.response) {
+            switch (error.response.status) {
+                case 401:
+                    router.currentRoute.path !== 'login' &&
+                        router.replace({ path: 'login', query: { redirect: router.currentRoute.path } })
+            }
+        }
+        console.log(JSON.stringify(error));
+        return Promise.reject(error.response.data)
+    }
+)
