@@ -1,0 +1,251 @@
+/* @base */
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button
+  margin 0
+  padding 0
+
+body, button, input, select, textarea
+  font-size 14px
+  font-family "Microsoft YaHei", NSimSun, SimSun, "Helvetica Neue", Helvetica, Arial, sans-serif
+
+input, select, textarea
+  font-size 100%
+
+table
+  border-collapse collapse
+  border-spacing 0
+
+th
+  text-align inherit
+
+fieldset, img, a img
+  border 0
+
+iframe, canvas
+  display block
+
+abbr, acronym
+  border 0
+  font-variant normal
+
+del
+  text-decoration line-through
+
+address, caption, cite, code, dfn, em, th, var
+  font-style normal
+  font-weight 500
+
+ol, ul, li
+  list-style none
+
+caption, th
+  text-align left
+
+h1, h2, h3, h4, h5, h6
+  font-size 100%
+  font-weight 500
+
+q:before, q:after
+  content ''
+
+sup
+  vertical-align text-top
+
+sub
+  vertical-align text-bottom
+
+em
+  font-style normal
+
+ins, a, a:hover
+  text-decoration none
+
+a
+  color currentColor
+  cursor pointer
+
+.fn-clear:after, .clearfix:after
+  visibility hidden
+  display block
+  font-size 0
+  content "\200B"
+  clear both
+  height 0
+
+.fn-clear, .clearfix
+  zoom 1
+
+.fn-hide
+  display none !important
+
+.fn-left, .fn-right
+  display inline
+
+.fn-left
+  float left !important
+
+.fn-right
+  float right !important
+
+.fn-ellipsis
+  word-break keep-all
+  white-space nowrap
+  text-overflow ellipsis
+  overflow hidden
+
+input[type=checkbox]
+  width 16px
+  height 16px
+  padding 5px
+
+/* 整体样式 */
+::-webkit-scrollbar
+  width 4px
+  height 4px
+
+/* 轨道 */
+::-webkit-scrollbar-track
+  background-color #f2f2f2
+
+/* 滑块 */
+::-webkit-scrollbar-thumb
+  width 4px
+  height 4px
+  background-color #e6e6e6
+  border-radius 4px
+
+option
+  width 100px
+  background-color #fff
+  &:hover
+    background-color $activeColor
+
+///* 两端小方块 */
+//::-webkit-scrollbar-button
+//  /* 不包含滑块的轨道区 */
+//::-webkit-scrollbar-track-piece
+//  /* 两端小方块交汇处 */
+//::-webkit-scrollbar-corner
+//  /* 如textare改变大小 */
+//::-webkit-resizer
+#filter-select
+  color $fontBlackColor !important
+  .layui-form-select
+    max-width 140px
+    .layui-select-title
+      input
+        color #666
+        border-radius 4px
+
+.layui-form
+  font-size 14px
+  font-weight normal
+  .layui-input, .layui-select, .layui-textarea
+    border-color #dddddd !important
+  .layui-form-select
+    dl
+      dd.layui-this
+        background-color $activeColor !important
+
+.loading-wrap
+  display none
+  width 100%
+  height 100%
+  position fixed
+  left 0
+  top 0
+  background rgba(0, 0, 0, 0.8)
+  z-index 999
+  .center-box
+    width 100%
+    height 100%
+    position relative
+  .loading-text
+    display none
+    color #5FBDAB
+    font-size 20px
+  .loading-box
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 0
+    width 200px
+    height 30px
+    margin auto
+    span
+      display inline-block
+      width 30px
+      height 30px
+      background-color #5FBDAB
+      border-radius 50%
+      -webkit-animation load 1.04s ease infinite
+  .loadEffect-center
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 0
+    width 500px
+    height 30px
+    margin auto
+  .loadEffect {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+  .load-percent{
+    position absolute
+    width 100%
+    height 100%
+    font-size 20px
+    color #5FBDAB
+    text-align center
+  }
+
+@keyframes load {
+  0% {
+    opacity 1
+  }
+  100% {
+    opacity 0
+  }
+}
+
+.loading-box span:nth-child(1) {
+  -webkit-animation-delay: 0.13s;
+}
+
+.loading-box span:nth-child(2) {
+  -webkit-animation-delay: 0.26s;
+}
+
+.loading-box span:nth-child(3) {
+  -webkit-animation-delay: 0.39s;
+}
+
+.loading-box span:nth-child(4) {
+  -webkit-animation-delay: 0.52s;
+}
+
+.loading-box span:nth-child(5) {
+  -webkit-animation-delay: 0.65s;
+}
+
+input::-webkit-input-placeholder {
+  color: rgb(221, 221, 221);
+}
+
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: rgb(221, 221, 221);
+}
+
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: rgb(221, 221, 221);
+}
+
+input:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color: rgb(221, 221, 221);
+}

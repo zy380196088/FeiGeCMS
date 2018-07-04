@@ -106,7 +106,6 @@
 <style rel="stylesheet/scss" lang="scss" scoped>
   @import "../src/assets/scss/main";
   @import "../src/assets/scss/common";
-
   html, body {
     width: 1440px;
     height: 1152px;

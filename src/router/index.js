@@ -3,13 +3,14 @@ import Router from 'vue-router'
 import Login from '@/views/login/index'
 import Home from '@/views/Home'
 import TaskManage from '@/views/task/index'
-import OrganizationManage from '@/views/OrganizationManage'
-import PublicOpinionMonitor from '@/views/PublicOpinionMonitor'
-import DataCenter from '@/views/dataCenter/index.vue'
-import Knowledge from '@/views/knowledge/index.vue'
+import OrganizationManage from '@/views/Organization/index'
+import PublicOpinionMonitor from '@/views/monitor/index'
+import DataCenter from '@/views/dataCenter/index'
+import Knowledge from '@/views/knowledge/index'
 import Media from '@/views/media/index.vue'
 import System from '@/views/media/index.vue'
 import Layout from '../views/layout/Layout'
+
 Vue.use(Router);
 
 export const constantRouterMap = [{
