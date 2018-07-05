@@ -1,10 +1,10 @@
 <template>
   <div>
-    <!-- <topHeader v-bind:menuData="menuData"></topHeader> -->
+    <topHeader v-bind:menuData="menuData"></topHeader>
     <transition name="fade" mode="out-in">
       <router-view class="container" :key="key"></router-view>
     </transition>
-    <!-- <bottomFooter></bottomFooter> -->
+    <bottomFooter></bottomFooter>
   </div>
 </template>
 
@@ -23,4 +23,5 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+
 </style>

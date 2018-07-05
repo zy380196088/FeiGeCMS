@@ -1,11 +1,11 @@
 <template>
-  <section v-cloak>
+  <div id="login-page" v-cloak>
     <div class="panel-box" v-for="item in panelData" :key="item.id">
       <i :class="item.iconClass"></i>
       <span>{{item.text}}</span>
       <p>{{item.value}}</p>
     </div>
-  </section>
+  </div>
 </template>
 
 <script type="text/ecmascript-6">
@@ -16,8 +16,11 @@
     mixins: [], // 混合
     data() { // 基础数据
     },
-    created() {}, // 创建周期
-    mounted() {},
+    created() {
+            this.drawCanvasBackground("login-page");
+    }, // 创建周期
+    mounted() {
+    },
     watch: {},
     methods: {
       drawCanvasBackground(id) {

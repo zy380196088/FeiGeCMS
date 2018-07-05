@@ -1,8 +1,6 @@
 <template>
     <div>
-        <router-view>
-            <ZTable></ZTable>
-        </router-view>
+        <ZTable></ZTable>
     </div>
 </template>
 
