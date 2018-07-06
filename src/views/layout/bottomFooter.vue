@@ -1,7 +1,5 @@
 <template>
-    <div>
         <footer class="footer">Copyright @ 2017 新华移动传媒 All rights reserved</footer>
-    </div>
 </template>
 
 <script type="text/ecmascript-6">

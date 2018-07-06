@@ -3,13 +3,18 @@ import Router from 'vue-router'
 import Login from '@/views/login/index'
 import Home from '@/views/Home'
 import TaskManage from '@/views/task/index'
-import OrganizationManage from '@/views/Organization/index'
+import OrganizationManage from '@/views/Organization/index';
+import UserOrg from '@/views/Organization/UserOrg'
+import DeptOrg from '@/views/Organization/DeptOrg'
+
 import PublicOpinionMonitor from '@/views/monitor/index'
 import DataCenter from '@/views/dataCenter/index'
 import Knowledge from '@/views/knowledge/index'
 import Media from '@/views/media/index.vue'
 import System from '@/views/media/index.vue'
-import Layout from '../views/layout/Layout'
+import Layout from '@/views/layout/Layout'
+
+
 
 Vue.use(Router);
 
@@ -40,6 +45,24 @@ export const constantRouterMap = [{
             requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
         },
         component: OrganizationManage
+    },
+
+    {
+        path: '/OrganizationManage/DeptOrg',
+        name: '部门管理',
+        meta: {
+            requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
+        },
+        component: DeptOrg
+    },
+
+    {
+        path: '/OrganizationManage/UserOrg',
+        name: '用户管理',
+        meta: {
+            requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
+        },
+        component: UserOrg
     },
     {
         path: '/PublicOpinionMonitor',

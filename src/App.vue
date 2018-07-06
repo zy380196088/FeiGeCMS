@@ -104,11 +104,12 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+  @import "../src/assets/scss/reset";
   @import "../src/assets/scss/main";
   @import "../src/assets/scss/common";
  
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: PingFangSC-Regular ,'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
@@ -122,7 +123,8 @@
   .container {
     margin: 86px auto;
     width: 1200px;
-    background-color:#f5f5f5;
+    height : calc(100% - 156px);
+    background-color: #ffffff;
   }
 
   [v-cloak] {

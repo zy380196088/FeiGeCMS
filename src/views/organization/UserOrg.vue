@@ -2,6 +2,8 @@
   <div>
     <div id="org-tab">
       <Tab></Tab>
+      <h2 class="org-title">部门架构</h2>
+      <Tree id="org-tree"></Tree>
     </div>
     
   </div>
@@ -33,8 +35,24 @@
 
 <style rel="stylesheet/scss" lang="scss" scoped>
   #org-tab {
-    width: 100%;
+    width: 120px;
     height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  #org-tree {
+    width: 260px;
+    max-height: 100%;
+    background-color: rgba(255, 255, 255, 1);
+  }
+
+  .org-title {
+    width: 100%;
+    display: inline-block;
+    line-height: 32px;
+    font-size: 20px;
+    font-weight: bold;
   }
 
 </style>

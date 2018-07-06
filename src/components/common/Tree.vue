@@ -1,7 +1,7 @@
 <template>
   <div class="tree-wrap">
     <div class="tree-search">
-      <input placeholder="查询关键字"/>
+      <input placeholder="请输入部门名称"/>
     </div>
     <ul v-if="treeData.length > 0" class="show">
       <li v-for="item in treeData" :key="item.id" >
@@ -9,7 +9,7 @@
         <span>{{item.name}}</span>
         <span class="fn-ml5"> ( {{item.users.length}} ) 人</span>
         <ul v-if="item.childs.length > 0" data-level="1" class="show">
-          <li v-for="subItem in  item.childs" :key="subItem.id">
+          <li v-for="subItem in  item.childs" :key="subItem.id" @click="chooseTreeLeaf()">
             <i class="pz-icon fn-mr5"></i>
             <span>{{subItem.name}}</span>
             <span class="fn-ml5"> ( {{subItem.users.length}} ) 人</span>
@@ -1062,6 +1062,9 @@
       init() {
         //初始化树
         let treeSourceData = JSON.parse(JSON.stringify(this.treeData))
+      },
+      chooseTreeLeaf(){
+        
       }
     }
 
@@ -1076,8 +1079,7 @@ $font-color = #666;
 $border-color =  #f1f1f1;
 import "@/assets/stylus/base.styl"
 import "@/assets/stylus/color.styl"
-ol, ul, li
-  list-style none
+
 .treeOption-panel
   text-align left
   padding 20px
@@ -1089,7 +1091,6 @@ ol, ul, li
     font-weight bold
     height 40px
     line-height 40px
-
 
   
 .select-user-tree
@@ -1108,6 +1109,7 @@ ol, ul, li
     display none
     line-height 36px
   li
+    list-style none
     width 100%
     line-height 36px
     cursor pointer
@@ -1123,6 +1125,7 @@ ol, ul, li
       margin-left 5px
       float right
       z-index 19
+      border 1px solid rgba(189,196,201,1)
     ul
       padding-left 20px
   [data-hasChilds]
@@ -1141,17 +1144,17 @@ ol, ul, li
     background-color $activeColor
     overflow hidden
   .tree-search
-    width 100%
-    box-size border-box
-    height 32px
-    margin 15px 5px
+    box-sizing border-box
+    height 40px
     input
+      box-sizing border-box
       line-height 32px
+      width 240px
       height 32px
       border 1px solid $border-color
       border-radius 4px
       outline none
-      padding 4px 10px
+      padding 8px 10px
       color $font-color
       &:focus
         border 1px solid $activeColor
