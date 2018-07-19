@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="clearfix">
+  <div id="layout" class="clearfix">
       <topHeader v-bind:menuData="menuData"></topHeader>
       <router-view class="container"></router-view>
       <bottomFooter></bottomFooter>
@@ -11,7 +11,7 @@
   import bottomFooter from '@/views/layout/bottomFooter'
   import ZTable from '@/components/ZTable'
   export default {
-    name: 'app',
+    name: 'page',
     components: {
       topHeader,
       bottomFooter,

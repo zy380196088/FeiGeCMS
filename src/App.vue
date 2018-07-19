@@ -15,7 +15,7 @@
     components: {
       topHeader,
       bottomFooter,
-      ZTable
+      ZTable,
     }, // 组件接收
     mounted(){
       const self = this;

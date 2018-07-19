@@ -89,9 +89,26 @@
         created () {
         }, // 创建周期
         mounted () {
+            this.getTableData();
         },
         watch: {},
-        methods: {}, // 方法
+        methods: {
+            getTableData() {
+        this.axios.get("/api/user/info").then(
+          response => {
+            console.log("/api/user/info",response.data);
+            if (response.data.error_code == 4) {
+              this.$router.push({
+                path: "/Login"
+              });
+            }
+          },
+          response => {
+            console.log(response);
+          }
+        );
+      }
+        }, // 方法
         computed: {}, // 计算属性
         filters: {}, // 过滤
         directives: {} // 指令
