@@ -28,74 +28,76 @@ export const constantRouterMap = [{
         meta: {
             requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
         },
-        component: Home
-    },
-    {
-        path: '/TaskManage',
-        name: '任务管理',
-        meta: {
-            requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
-        },
-        component: TaskManage
-    },
-    {
-        path: '/OrganizationManage',
-        name: '组织管理',
-        meta: {
-            requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
-        },
-        component: OrganizationManage
+        component: Home,
+        children: [{
+                path: '/TaskManage',
+                name: '任务管理',
+                meta: {
+                    requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
+                },
+                component: TaskManage
+            },
+            {
+                path: '/OrganizationManage',
+                name: '组织管理',
+                meta: {
+                    requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
+                },
+                component: OrganizationManage
+            },
+
+            {
+                path: '/OrganizationManage/DeptOrg',
+                name: '部门管理',
+                meta: {
+                    requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
+                },
+                component: DeptOrg
+            },
+
+            {
+                path: '/OrganizationManage/UserOrg',
+                name: '用户管理',
+                meta: {
+                    requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
+                },
+                component: UserOrg
+            },
+            {
+                path: '/PublicOpinionMonitor',
+                name: '舆情管理',
+                meta: {
+                    requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
+                },
+                component: PublicOpinionMonitor,
+            },
+            {
+                path: '/DataCenter',
+                name: '数据中心',
+                meta: {
+                    requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
+                },
+                component: DataCenter,
+            },
+            {
+                path: '/Knowledge',
+                name: '知识库',
+                meta: {
+                    requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
+                },
+                component: Knowledge,
+            },
+            {
+                path: '/Media',
+                name: '媒体服务',
+                meta: {
+                    requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
+                },
+                component: Media,
+            }
+        ]
     },
 
-    {
-        path: '/OrganizationManage/DeptOrg',
-        name: '部门管理',
-        meta: {
-            requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
-        },
-        component: DeptOrg
-    },
-
-    {
-        path: '/OrganizationManage/UserOrg',
-        name: '用户管理',
-        meta: {
-            requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
-        },
-        component: UserOrg
-    },
-    {
-        path: '/PublicOpinionMonitor',
-        name: '舆情管理',
-        meta: {
-            requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
-        },
-        component: PublicOpinionMonitor,
-    },
-    {
-        path: '/DataCenter',
-        name: '数据中心',
-        meta: {
-            requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
-        },
-        component: DataCenter,
-    },
-    {
-        path: '/Knowledge',
-        name: '知识库',
-        meta: {
-            requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
-        },
-        component: Knowledge,
-    },
-    {
-        path: '/Media',
-        name: '媒体服务',
-        meta: {
-            requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
-        },
-        component: Media,
-    }
 ];
 
 

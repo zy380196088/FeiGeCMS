@@ -9,7 +9,11 @@
           <span class="input-item-icon"></span>
           <input name="login_name" type="text" v-bind:placeholder="item.placeholder">
         </div>
-
+        <div class="remember-login-box">
+          <input type="checkbox" id="remember-login">
+          <label for="remember-login">记住账户</label>
+        </div>
+        <div class="login-btn">登录</div>
       </form>
     </div>
   </div>
@@ -206,8 +210,8 @@
     background: rgba(236, 245, 244, 1);
     .canvas-wrap {
       position: absolute;
-      top:0;
-      left:0;
+      top: 0;
+      left: 0;
     }
     .login-panel {
       width: 360px;
@@ -229,9 +233,9 @@
         width: 100px;
         height: 100px;
         margin: 0 auto;
-
       }
       .logo-text {
+        margin-top:30px;
         width: 100%;
         height: 33px;
         font-size: 24px;
@@ -248,14 +252,14 @@
           display: inline-block;
           width: 100%;
           height: 42px;
-          line-height:42px;
+          line-height: 42px;
           margin: 10px auto;
           background: rgba(255, 255, 255, 1);
           border-radius: 4px;
           border: 1px solid rgba(221, 221, 221, 1);
-          .input-item-icon{
-            width:15px;
-            height:18px;
+          .input-item-icon {
+            width: 15px;
+            height: 18px;
           }
           input {
             display: inline-block;
@@ -269,6 +273,22 @@
             color: rgba(221, 221, 221, 1);
             line-height: 30px;
           }
+        }
+        .remember-login-box {
+          width: 200px;
+          text-align: left;
+        }
+        .login-btn {
+          margin-top:20px;
+          width: 280px;
+          height: 42px;
+          line-height: 42px;
+          background: rgba(95, 189, 171, 1);
+          border-radius: 4px;
+          border: 1px solid rgba(95, 189, 171, 1);
+          font-size: 18px;
+          font-family: MicrosoftYaHei;
+          color: rgba(255, 255, 255, 1);
         }
       }
     }

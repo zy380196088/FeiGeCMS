@@ -1,8 +1,6 @@
 <template>
   <div id="app" class="clearfix">
-      <topHeader v-bind:menuData="menuData"></topHeader>
-      <router-view class="container"></router-view>
-      <bottomFooter></bottomFooter>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -15,7 +13,7 @@
     components: {
       topHeader,
       bottomFooter,
-      ZTable,
+      ZTable
     }, // 组件接收
     mounted(){
       const self = this;
