@@ -15,6 +15,9 @@
     components: {}, // 组件接收
     mixins: [], // 混合
     data() { // 基础数据
+      loginData:{
+        
+      }
     },
     created() {
             this.drawCanvasBackground("login-page");
@@ -164,6 +167,9 @@
             }
           }
         )
+      },
+      ajaxLogin:function(){
+
       }
     }, // 方法
     computed: {}, // 计算属性

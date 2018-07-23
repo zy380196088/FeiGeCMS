@@ -6,14 +6,23 @@
       <h3 class="logo-text">飞鸽舆信互动管理平台</h3>
       <form class="login-form" ref="loginForm">
         <div v-for="item in formData" :key="item.index" class="input-item">
-          <span class="input-item-icon"></span>
-          <input name="login_name" type="text" v-bind:placeholder="item.placeholder">
+          <span class="input-item-icon">
+            <i :class="item.iconClass"></i>
+          </span>
+          <input name="login_name" v-if="!item.isPwd" type="text" v-bind:placeholder="item.placeholder" v-model="item.value">
+          <input name="login_name" v-if="item.isPwd" type="password" v-bind:placeholder="item.placeholder" v-model="item.value">
+        </div>
+        <div class="input-item" v-if="verifyCode.show">
+          <input name="" type="text">
+          <span>
+            <img src="" alt="">
+          </span>
         </div>
         <div class="remember-login-box">
           <input type="checkbox" id="remember-login">
           <label for="remember-login">记住账户</label>
         </div>
-        <div class="login-btn">登录</div>
+        <div class="login-btn" v-on:click="ajaxLogin">登录</div>
       </form>
     </div>
   </div>
@@ -29,6 +38,25 @@
     created() {}, // 创建周期
     mounted() {
       this.renderCanvasBackground("login-page-canvas-background");
+      this.axios({
+        method: 'post',
+        url: "/api/login2/generateImageVerifyText",
+        data: {
+          flag: 1
+        }
+      }).then(
+        response => {
+          console.log("/api/login2/generateImageVerifyText", response.data);
+          if (response.data.error_code == 4) {
+            this.$router.push({
+              path: "/Login"
+            });
+          }
+        },
+        response => {
+          console.log(response);
+        }
+      );
     },
     watch: {},
     computed: {}, // 计算属性
@@ -39,18 +67,25 @@
         loading: false,
         showDialog: false,
         formData: [{
-            icon: "",
+            type: 'text',
+            isPwd: false,
+            iconClass: "iconfont icon-user-o",
             label: '用户名',
             value: "",
             placeholder: '请输入登录账号'
           },
           {
-            icon: "",
+            type: 'password',
+            isPwd: true,
+            iconClass: "iconfont icon-key-o",
             label: '密码',
             value: "",
             placeholder: '请输入密码'
           }
         ],
+        verifyCode: {
+          show: true,
+        },
         loginRules: {
           userName: [{
             required: true,
@@ -62,6 +97,12 @@
             trigger: "blur",
             validator: ""
           }]
+        },
+        loginData: {
+          login_name: '',
+          password: '',
+          verifiy_text: '',
+          web_login_feature: '',
         }
       };
     },
@@ -190,12 +231,8 @@
           }
         }
       },
-      showPassword() {
-        if (this.pwdType === "password") {
-          this.pwdType = "";
-        } else {
-          this.pwdType = "password";
-        }
+      ajaxLogin() {
+        console.log(this.formData);
       }
     }
   };
@@ -208,6 +245,7 @@
     width: 100%;
     height: 100%;
     background: rgba(236, 245, 244, 1);
+    color: rgb(102, 102, 102);
     .canvas-wrap {
       position: absolute;
       top: 0;
@@ -235,7 +273,7 @@
         margin: 0 auto;
       }
       .logo-text {
-        margin-top:30px;
+        margin-top: 30px;
         width: 100%;
         height: 33px;
         font-size: 24px;
@@ -249,23 +287,37 @@
         width: 280px;
         height: 300px;
         .input-item {
+          box-sizing: border-box;
           display: inline-block;
           width: 100%;
           height: 42px;
-          line-height: 42px;
+          line-height: 40px;
           margin: 10px auto;
           background: rgba(255, 255, 255, 1);
           border-radius: 4px;
           border: 1px solid rgba(221, 221, 221, 1);
           .input-item-icon {
-            width: 15px;
-            height: 18px;
+            float: left;
+            width: 40px;
+            height: 100%;
+            i {
+              font-size: 24px;
+              line-height: 40px;
+              font-weight: bold;
+            }
           }
           input {
-            display: inline-block;
+            float: left;
+            box-sizing: border-box;
+            display: block;
             width: 220px;
+            height: 30px;
+            margin: 5px;
             outline: none;
             border: 0;
+            font-size: 16px;
+            line-height: 16px;
+            color: rgb(102, 102, 102)
           }
           input::placeholder {
             font-size: 14px;
@@ -277,9 +329,12 @@
         .remember-login-box {
           width: 200px;
           text-align: left;
+          input[type=checkbox] {
+            cursor: pointer;
+          }
         }
         .login-btn {
-          margin-top:20px;
+          margin-top: 20px;
           width: 280px;
           height: 42px;
           line-height: 42px;
@@ -289,6 +344,7 @@
           font-size: 18px;
           font-family: MicrosoftYaHei;
           color: rgba(255, 255, 255, 1);
+          cursor: pointer;
         }
       }
     }

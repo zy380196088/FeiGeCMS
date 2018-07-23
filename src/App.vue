@@ -102,6 +102,7 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+  @import "../src/assets/font/iconfont/iconfont.css";
   @import "../src/assets/scss/reset";
   @import "../src/assets/scss/main";
   @import "../src/assets/scss/common";
