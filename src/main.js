@@ -16,6 +16,10 @@ Vue.use(ElementUI);
 Vue.use(VueAxios, axios);
 
 //axios 配置
+axios.defaults.headers = {
+    "Content-Type": "application/x-www-form-urlencoded"
+};
+axios.defaults.withCredentials = true; //ajax带cookie
 axios.defaults.timeout = 5000;
 
 Vue.filter('percent', function(value) {

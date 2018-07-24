@@ -30,6 +30,7 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import md5 from 'js-md5'
   export default {
     name: "login",
     props: [], // 父到子传参
@@ -232,7 +233,26 @@
         }
       },
       ajaxLogin() {
-        console.log(this.formData);
+        console.log(md5(this.formData[1].value));
+        this.axios({
+          type: 'post',
+          url: '/rest/login2/goLogin',
+          data: {
+            "login_name": this.formData[0].value, //登录账号
+            "password": this.formData[1].value, //密码MD5
+            "verifiy_text": "", //图片验证码文本(PC)
+            "web_login_feature": "" //登录识别码(PC)
+          }
+        }).then(
+          success => {
+            console.log(success);
+          },
+          error => {
+            console.log(error);
+          }
+
+
+        )
       }
     }
   };

@@ -13,6 +13,7 @@
 </template>
 
 <script type="text/ecmascript-6">
+import store from '@/store'
   export default {
     name: '',
     props: ['menuData'], // 父到子传参

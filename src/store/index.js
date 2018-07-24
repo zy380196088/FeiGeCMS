@@ -5,6 +5,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import getters from "./getters";
 import index from "./modules/index";
+import { mapState } from 'vuex';
 //从环境变量判断当前的运行模式
 const debug = process.env.NODE_ENV !== "production";
 
@@ -14,6 +15,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
     state: {
         //data
+        userInfo: {},
         menuData: [{
                 num: 1,
                 text: '首页',
@@ -105,59 +107,14 @@ const store = new Vuex.Store({
                 },
             ]
         },
-        goods: {
-            totalPrice: 0,
-            totalNum: 0,
-            goodsData: [{
-                    id: '1',
-                    title: '好吃的苹果',
-                    price: 8.00,
-                    image: 'https://www.shangdian.com/static/pingguo.jpg',
-                    num: 0
-                },
-                {
-                    id: '2',
-                    title: '美味的香蕉',
-                    price: 5.00,
-                    image: 'https://www.shangdian.com/static/xiangjiao.jpg',
-                    num: 0
-                }
-            ]
-        }
     },
     getters: {
         //computed
 
-        totalNum(state) {
-            let _totalNum = 0;
-            state.goods.goodsData.forEach((value, index) => {
-                _totalNum += value.num;
-            });
-            return _totalNum;
-        },
-        totalPrice(state) {
-            let _totalPrice = 0;
-            state.goods.goodsData.forEach((value, index) => {
-                _totalPrice += value.num * value.price;
-            })
-            return _totalPrice.toFixed(2);
-        }
+
     },
     mutations: {
-        result(state, msg) {
-            state.goods.totalNum = this.getters.totalNum;
-            state.goods.totalPrice = this.getters.totalPrice;
-        },
-        addGoods(state, index) {
-            state.goods.goodsData[index].num -= 1;
-            let msg = '我执行了一次'
-            this.commit('reselt', msg);
-        },
-        addGoods(state, index) {
-            state.goods.goodsData[index].num += 1;
-            let msg = '我执行了一次'
-            this.commit('reselt', msg);
-        }
+
     },
     modules: {
         //methods
