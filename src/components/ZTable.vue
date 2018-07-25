@@ -94,9 +94,8 @@
         watch: {},
         methods: {
             getTableData() {
-        this.axios.get("/api/user/info").then(
+        this.axios.get("/rest/user/info").then(
           response => {
-            console.log("/api/user/info",response.data);
             if (response.data.error_code == 4) {
               this.$router.push({
                 path: "/Login"

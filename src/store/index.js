@@ -4,6 +4,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import getters from "./getters";
+import mutations from "./mutations";
 import index from "./modules/index";
 import { mapState } from 'vuex';
 //从环境变量判断当前的运行模式
@@ -111,10 +112,29 @@ const store = new Vuex.Store({
     getters: {
         //computed
 
-
+    },
+    actions: {
+        getUserInfo: function(store) {
+            this.axios.get("/rest/user/info").then(
+                res => {
+                    if (res.data.error_code == 4) {
+                        this.$router.push({
+                            path: "/Login"
+                        });
+                    } else {
+                        store.commit("SET_USERINFO", res.data.data);
+                    }
+                },
+                error => {
+                    console.log(error);
+                }
+            );
+        }
     },
     mutations: {
-
+        SET_USERINFO(state, data) {
+            state.userInfo = data;
+        }
     },
     modules: {
         //methods
