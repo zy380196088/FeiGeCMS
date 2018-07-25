@@ -7,7 +7,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import store from './store'
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
+// import 'element-theme-default/lib/theme-default/index.css'
 
 Vue.config.debug = true;
 Vue.config.productionTip = false;
@@ -25,7 +25,6 @@ Vue.filter('percent', function(value) {
         return 0;
     }
 });
-
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
@@ -35,6 +34,7 @@ new Vue({
     template: '<App/>',
     components: { App }
 });
+
 //http request 拦截器
 axios.interceptors.request.use(
     config => {
