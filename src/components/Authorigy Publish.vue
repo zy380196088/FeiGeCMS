@@ -54,7 +54,6 @@
     computed: {
     }, // 计算属性
     mounted(){
-      this.$store.dispatch("getPanelData");
     },
     filters: {}, // 过滤
     directives: {} // 指令
@@ -65,49 +64,4 @@
 <style rel="stylesheet/scss" lang="scss" scoped>
   @import "../assets/scss/main";
   @import "../assets/scss/common";
-
-  $panelHeight: 120px;
-  section {
-    width: 1200px;
-    height: $panelHeight;
-    line-height: $panelHeight/2;
-    margin-bottom: 20px;
-    background-color: #fff;
-    .panel-box {
-      display: inline-block;
-      box-sizing: border-box;
-      width: 300px;
-      height: 120px;
-      border-right: 1px solid #dddddd;
-      i {
-        cursor: pointer;
-      }
-      p {
-        font-size: 30px;
-        font-weight: bold;
-      }
-    }
-    .panel-box:nth-child(1) {
-      p {
-        color: $blue;
-      }
-    }
-    .panel-box:nth-child(2) {
-      p {
-        color: $yellow;
-      }
-    }
-    .panel-box:nth-child(3) {
-      p {
-        color: $gray;
-      }
-    }
-    .panel-box:last-child {
-      border: 0;
-      p {
-        color: $green;
-      }
-    }
-  }
-
 </style>

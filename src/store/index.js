@@ -6,17 +6,21 @@ import Vuex from "vuex";
 import getters from "./getters";
 import mutations from "./mutations";
 import index from "./modules/index";
-import { mapState } from 'vuex';
+import {
+    mapState
+} from 'vuex';
 //从环境变量判断当前的运行模式
 const debug = process.env.NODE_ENV !== "production";
 
+//从main.js减少对vuex 库的依赖 
 Vue.use(Vuex);
 
 //导出 store 实例对象
 const store = new Vuex.Store({
+    strict: true, //调试模式
     state: {
         //data
-        userInfo: {},
+        userInfo: {}, //用户信息
         menuData: [{
                 num: 1,
                 text: '首页',
@@ -115,6 +119,7 @@ const store = new Vuex.Store({
     },
     actions: {
         getUserInfo: function(store) {
+            //store和我们使用的$store拥有相同的对象和方法
             this.axios.get("/rest/user/info").then(
                 res => {
                     if (res.data.error_code == 4) {
@@ -129,11 +134,22 @@ const store = new Vuex.Store({
                     console.log(error);
                 }
             );
+        },
+        getPanelData: function(store) {
+            this.axios.post('/rest/home/index').then(res => {
+                console.log(res)
+                store.commit("SET_PANELDATA", data.data);
+            }, err => {
+                console.log(err)
+            })
         }
     },
     mutations: {
         SET_USERINFO(state, data) {
             state.userInfo = data;
+        },
+        SET_PANELDATA(state, data) {
+            state.panelData = data;
         }
     },
     modules: {
