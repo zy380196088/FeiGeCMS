@@ -1,7 +1,7 @@
 <template>
   <div>
-    <section class="tablePanel">
-      <header></header>
+    <section class="wpy-table-panel">
+      <div class="table-title">{{tableTitle}}</div>
       <table>
         <thead>
           <tr>
@@ -36,53 +36,21 @@
 
 <script type="text/ecmascript-6">
   export default {
-    name: '',
-    props: [], // 父到子传参
+    name: 'table',
+    props: {
+      tableTitle: '',
+      tableData: {
+        type: Array,
+        required: true
+      }
+    }, // 父到子传参
     components: {}, // 组件接收
     mixins: [], // 混合
     data() { // 基础数据
       return {
+        tableTitle: '',
         tableHead: ['任务标题', '类型', '任务状态', '任务时间', '任务更新时间', '处理情况', '任务积分数', '操作'],
-        tableData: [{
-            title: 'G20相关评论',
-            type: 0,
-            state: 1,
-            beginTime: '2016-9-13 12:00',
-            endTime: '2016-9-14 16:00',
-            refreshTime: '2016-9-13 21:00',
-            handle: 0,
-            points: 2
-          },
-          {
-            title: '杭州保姆纵火案件评论',
-            type: 1,
-            state: 0,
-            beginTime: '2017-6-14 12:00',
-            endTime: '2017-6-22 16:00',
-            refreshTime: '2017-7-8 21:00',
-            handle: 1,
-            points: 5
-          },
-          {
-            title: 'G20相关评论',
-            type: 2,
-            state: 1,
-            beginTime: '2016-9-13 12:00',
-            endTime: '2016-9-14 16:00',
-            refreshTime: '2016-9-13 21:00',
-            handle: 0,
-            points: 3
-          }, {
-            title: 'G20相关评论',
-            type: 0,
-            state: 0,
-            beginTime: '2016-9-13 12:00',
-            endTime: '2016-9-14 16:00',
-            refreshTime: '2016-9-13 21:00',
-            handle: 1,
-            points: 2
-          },
-        ]
+        tableData: [],
       }
     },
     created() {}, // 创建周期
@@ -114,20 +82,31 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-  @import "../assets/scss/color";
-  @import "../assets/scss/main";
-  @import "../assets/scss/common";
+  @import "../../assets/scss/color";
+  @import "../../assets/scss/main";
+  @import "../../assets/scss/common";
 
   $tableHeight: 66px;
   $tableLineHeight: 66px;
   $tableHoverColor: #F9F9F9;
-  .tablePanel {
+  .wpy-table-panel {
     width: 1200px;
     height: 840px;
     background-color: #fff;
     padding: 0;
     margin: 0;
     border: 0;
+    .table-title {
+      width: 100%;
+      height: 70px;
+      line-height: 70px;
+      font-size: 18px;
+      text-align: left;
+      padding-left: 40px;
+      font-family: PingFangSC-Bold;
+      font-weight: bold;
+      color: rgba(102, 102, 102, 1);
+    }
     table {
       width: 100%;
       thead {

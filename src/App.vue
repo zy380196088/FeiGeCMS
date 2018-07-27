@@ -7,13 +7,13 @@
 <script type="text/ecmascript-6">
   import topHeader from '@/views/layout/topHeader'
   import bottomFooter from '@/views/layout/bottomFooter'
-  import ZTable from '@/components/ZTable'
+  import Table from '@/components/common/Table'
   export default {
     name: 'app',
     components: {
       topHeader,
       bottomFooter,
-      ZTable
+      Table
     }, // 组件接收
     mounted(){
       const self = this;
