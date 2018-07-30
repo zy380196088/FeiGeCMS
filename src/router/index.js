@@ -1,18 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/views/login/index'
-import Home from '@/views/Home'
+import Home from '@/views/home/index'
 import TaskManage from '@/views/task/index'
 import OrganizationManage from '@/views/Organization/index';
 import UserOrg from '@/views/Organization/UserOrg'
 import DeptOrg from '@/views/Organization/DeptOrg'
-
 import PublicOpinionMonitor from '@/views/monitor/index'
 import DataCenter from '@/views/dataCenter/index'
 import Knowledge from '@/views/knowledge/index'
 import Media from '@/views/media/index.vue'
 import System from '@/views/media/index.vue'
-import Layout from '@/views/layout/Layout'
+import Layout from '@/views/layout/Layout.vue'
 
 
 
@@ -23,13 +22,20 @@ export const constantRouterMap = [{
         name: 'Login',
         component: Login
     }, {
-        path: '/Home',
-        name: 'Home',
+        path: '/',
+        name: 'Layout',
         meta: {
             requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
         },
-        component: Home,
+        component: Layout,
         children: [{
+                path: '/Home',
+                name: '首页',
+                meta: {
+                    requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
+                },
+                component: Home
+            }, {
                 path: '/TaskManage',
                 name: '任务管理',
                 meta: {
@@ -103,4 +109,4 @@ export const constantRouterMap = [{
 
 export default new Router({
     routes: constantRouterMap
-});
+})

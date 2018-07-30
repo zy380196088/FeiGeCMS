@@ -1,6 +1,6 @@
 <template>
   <div id="layout" class="clearfix">
-      <topHeader v-bind:menuData="menuData"></topHeader>
+      <topHeader v-bind:menuData="$store.menuData"></topHeader>
       <router-view class="container"></router-view>
       <bottomFooter></bottomFooter>
   </div>

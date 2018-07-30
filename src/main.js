@@ -16,25 +16,22 @@ Vue.use(ElementUI);
 Vue.use(VueAxios, axios);
 
 //axios 配置
-axios.defaults.timeout = 5000;
-
-Vue.filter('percent', function(value) {
-    if (typeof value == 'number') {
-        return (value / 100).toFixed(2) + '%';
-    } else {
-        return 0;
+//可以通过这种方式给axios设置的默认请求头
+axios.defaults.headers = {
+    "Content-Type": "application/x-www-form-urlencoded"
+};
+// 发送请求前处理request的数据
+axios.defaults.transformRequest = [function(data) {
+    // Do whatever you want to transform the data
+    let newData = ''
+    for (let k in data) {
+        newData += encodeURIComponent(k) + '=' + encodeURIComponent(data[k]) + '&'
     }
-});
-/* eslint-disable no-new */
-new Vue({
-    el: '#app',
-    router,
-    store,
-    ElementUI,
-    template: '<App/>',
-    components: { App }
-});
+    return newData;
+}];
 
+axios.defaults.withCredentials = true; //ajax带cookie
+axios.defaults.timeout = 5000;
 //http request 拦截器
 axios.interceptors.request.use(
     config => {
@@ -50,19 +47,37 @@ axios.interceptors.request.use(
 
 //http response 拦截器
 axios.interceptors.response.use(
-    response => {
-        console.log(response)
-        return response
+    res => {
+        console.log("Axios:", res, res.request.responseURL)
+        return res;
     },
-    error => {
-        if (error.response) {
-            switch (error.response.status) {
+    err => {
+        if (err.response) {
+            switch (err.response.status) {
                 case 401:
-                    router.currentRoute.path !== 'login' &&
-                        router.replace({ path: 'login', query: { redirect: router.currentRoute.path } })
+                    router.currentRoute.path !== 'Login' &&
+                        router.replace({ path: 'Login', query: { redirect: router.currentRoute.path } })
             }
         }
-        console.log(JSON.stringify(error));
-        return Promise.reject(error.response.data)
+        console.log(JSON.stringify(err));
+        return Promise.reject(err.response.data)
     }
 )
+
+Vue.filter('percent', function(value) {
+    if (typeof value == 'number') {
+        return (value / 100).toFixed(2) + '%';
+    } else {
+        return 0;
+    }
+});
+
+/* eslint-disable no-new */
+new Vue({
+    el: '#app',
+    router,
+    store,
+    ElementUI,
+    template: '<App/>',
+    components: { App }
+});

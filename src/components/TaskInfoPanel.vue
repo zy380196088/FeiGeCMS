@@ -43,18 +43,15 @@
         integral: 100,
       }
     },
-    created() {
-    }, // 创建周期
-    mounted(){
-    
+    created() {}, // 创建周期
+    mounted() {
+      this.getData();
     },
     watch: {},
     methods: {
-      getUserData(){
-                this.axios.get('/api/user/info').then((response) =>{
-                    console.log(response.data)
-                },response=>{})
-            }
+      getData(){
+        this.axios.post('/rest/home/index').then(res=>{},err=>{})
+      }
     }, // 方法
     computed: {}, // 计算属性
     filters: {}, // 过滤

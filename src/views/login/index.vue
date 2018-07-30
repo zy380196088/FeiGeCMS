@@ -12,11 +12,9 @@
           <input name="login_name" v-if="!item.isPwd" type="text" v-bind:placeholder="item.placeholder" v-model="item.value">
           <input name="login_name" v-if="item.isPwd" type="password" v-bind:placeholder="item.placeholder" v-model="item.value">
         </div>
-        <div class="input-item" v-if="verifyCode.show">
-          <input name="" type="text">
-          <span>
-            <img src="" alt="">
-          </span>
+        <div class="input-item verfiyCode-box" v-if="verifyCode.show">
+          <input class="verfiyCode-input" name="" type="text" v-model="verifyCode.value">
+          <img class="verfiyCode-img" :src="verifyCode.imgUrl" alt="">
         </div>
         <div class="remember-login-box">
           <input type="checkbox" id="remember-login">
@@ -30,6 +28,7 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import md5 from 'js-md5'
   export default {
     name: "login",
     props: [], // 父到子传参
@@ -38,25 +37,7 @@
     created() {}, // 创建周期
     mounted() {
       this.renderCanvasBackground("login-page-canvas-background");
-      this.axios({
-        method: 'post',
-        url: "/api/login2/generateImageVerifyText",
-        data: {
-          flag: 1
-        }
-      }).then(
-        response => {
-          console.log("/api/login2/generateImageVerifyText", response.data);
-          if (response.data.error_code == 4) {
-            this.$router.push({
-              path: "/Login"
-            });
-          }
-        },
-        response => {
-          console.log(response);
-        }
-      );
+      this.generateImageVerifyText();
     },
     watch: {},
     computed: {}, // 计算属性
@@ -85,6 +66,8 @@
         ],
         verifyCode: {
           show: true,
+          imgUrl: '',
+          value: '',
         },
         loginRules: {
           userName: [{
@@ -107,6 +90,28 @@
       };
     },
     methods: {
+      generateImageVerifyText() {//获取登录验证码图片地址
+        this.axios({
+          method: 'post',
+          url: "/rest/login2/generateImageVerifyText",
+          data: {
+            flag: 1
+          }
+        }).then(
+          res => {
+            if (res.data.error_code == 4) {
+              this.$router.push({
+                path: "/Login"
+              });
+            } else if (res.data.error_code == 0) {
+              this.verifyCode.imgUrl = res.data.url;
+            }
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      },
       renderCanvasBackground(id) {
         /**
          * Created by zhouyu on 2017/9/5.
@@ -232,7 +237,30 @@
         }
       },
       ajaxLogin() {
-        console.log(this.formData);
+        this.axios({
+          method: 'post',
+          url: '/rest/login2/goLogin',
+          data: {
+            login_name: this.formData[0].value,
+            password: md5(this.formData[1].value),
+            verifiy_text: this.verifyCode.value,
+          }
+        }).then(
+          res => {
+            if (res.status == 200) {
+              this.$store.state.userInfo = res.data.data;
+              console.log(this.$store.state)
+              this.$router.push({
+                path: "/Home"
+              });
+            }
+          },
+          error => {
+            console.log(error);
+          }
+
+
+        )
       }
     }
   };
@@ -324,6 +352,26 @@
             font-family: MicrosoftYaHei;
             color: rgba(221, 221, 221, 1);
             line-height: 30px;
+          }
+
+        }
+        .verfiyCode-box {
+          position: relative;
+          overflow: hidden;
+          .verfiyCode-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 180px;
+            padding-left: 40px;
+          }
+          .verfiyCode-img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: inline-block;
+            width: 100px;
+            height: 100%;
           }
         }
         .remember-login-box {
