@@ -1,21 +1,20 @@
 <template>
   <div>
     <TaskInfoPanel></TaskInfoPanel>
-    <Table :table-data="tableData" :table-title="tableTitle"></Table>
+    <WpyTable :table-data="tableData" :table-title="tableTitle"></WpyTable>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import Table from "@/components/common/Table.vue";
+  import WpyTable from "@/components/common/WpyTable.vue";
   import Panel from "@/components/common/Panel.vue";
   import TaskInfoPanel from "@/components/TaskInfoPanel.vue";
   export default {
     name: "Home",
     props: [
-
     ], // 父到子传参
     components: {
-      Table,
+      WpyTable,
       Panel,
       TaskInfoPanel
     }, // 组件接收

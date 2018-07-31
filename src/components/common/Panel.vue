@@ -20,25 +20,9 @@
     },
     created() {}, // 创建周期
     mounted() {
-      this.getTableData();
     },
     watch: {},
-    methods: {
-      getTableData() {
-        this.axios.get("/rest/task/getList").then(
-          res => {
-            if (res.data.error_code == 4) {
-              this.$router.push({
-                path: "/Login"
-              });
-            }
-          },
-          err => {
-            console.log(err);
-          }
-        );
-      }
-    }, // 方法
+    methods: {}, // 方法
     computed: {}, // 计算属性
     filters: {}, // 过滤
     directives: {} // 指令

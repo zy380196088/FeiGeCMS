@@ -1,16 +1,16 @@
 <template>
   <div>
-    <Table :table-data="tableData" :table-title="tableTitle"></Table>
+    <WpyTable :table-data="tableData" :table-title="tableTitle"></WpyTable>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import Table from '@/components/common/Table'
+  import WpyTable from '@/components/common/WpyTable'
   export default {
     name: 'TaskManage',
     props: [], // 父到子传参
     components: {
-      Table
+      WpyTable
     }, // 组件接收
     mixins: [], // 混合
     data() { // 基础数据
