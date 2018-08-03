@@ -7,13 +7,13 @@
 <script type="text/ecmascript-6">
   import topHeader from '@/views/layout/topHeader'
   import bottomFooter from '@/views/layout/bottomFooter'
-  import ZTable from '@/components/ZTable'
+  import WpyTable from '@/components/common/WpyTable'
   export default {
     name: 'app',
     components: {
       topHeader,
       bottomFooter,
-      ZTable
+      WpyTable
     }, // 组件接收
     mounted(){
       const self = this;
