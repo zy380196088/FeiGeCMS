@@ -6,7 +6,7 @@
         <span class="fl">飞鸽舆信互动管理平台</span>
       </div>
       <ul id="menu">
-        <router-link tag="li" v-for="menu in menuList" :key="menu.num" v-text="menu.text" :to="menu.path"></router-link>
+        <router-link tag="li" v-for="menu in menuList" :key="menu.num" v-text="menu.text" :to="menu.path" active-class="active"></router-link>
       </ul>
     </div>
   </header>
@@ -84,12 +84,15 @@ import store from '@/store'
       li:hover,
       li:active,
       li:visited {
-        background-color: $activeColor;
+        color: $activeColor;
         cursor: pointer;
       }
     }
-    .router-link-active {
+    .menu-active {
       background-color: $activeColor;
+    }
+    .menu-active:hover{
+      color: #fff;
     }
 
 

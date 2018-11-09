@@ -63,7 +63,9 @@
     }, // 创建周期
     mounted() {},
     watch: {},
-    methods: {}, // 方法
+    methods: {
+      
+    }, // 方法
     computed: {}, // 计算属性
     filters: {}, // 过滤
     directives: {} // 指令

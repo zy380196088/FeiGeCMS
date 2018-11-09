@@ -1,6 +1,8 @@
 <template>
   <div id="app" class="clearfix">
-    <router-view></router-view>
+    <transition name="fade">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -15,23 +17,21 @@
       bottomFooter,
       WpyTable
     }, // 组件接收
-    mounted(){
+    mounted() {
       const self = this;
       window.onresize = () => {
-        return (()=> {
+        return (() => {
           window.screenWidth = document.body.clientWidth;
           self.screenWidth = window.screenWidth;
           console.log(self.screenWidth)
         })
       }
     },
-    created(){
-    },
-    data(){
+    created() {},
+    data() {
       return {
         screenWidth: document.body.clientWidth,
-        menuData: [
-          {
+        menuData: [{
             num: 1,
             text: '首页',
             icon: "",
@@ -83,8 +83,8 @@
     },
     method: {},
     watch: {
-      screenWidth (val) {
-//            优化 因为 频繁 触发 resize 函数，导致页面很卡的 问题
+      screenWidth(val) {
+        //            优化 因为 频繁 触发 resize 函数，导致页面很卡的 问题
         if (!this.timer) {
           this.screenWidth = val;
           this.timer = true
@@ -99,6 +99,7 @@
       }
     }
   }
+
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
@@ -106,27 +107,40 @@
   @import "../src/assets/scss/reset";
   @import "../src/assets/scss/main";
   @import "../src/assets/scss/common";
- 
+
   #app {
-    font-family: PingFangSC-Regular ,'Avenir', Helvetica, Arial, sans-serif;
+    font-family: PingFangSC-Regular, 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #666;
     padding: 0;
     width: 100%;
-    height:100%;
+    height: 100%;
     font-size: $fontSize;
   }
 
   .container {
     margin: 86px auto;
     width: 1200px;
-    height : calc(100% - 156px);
+    height: calc(100% - 156px);
     background-color: #ffffff;
+  }
+  .fade-enter-active{
+    transition:all .3s ease;
+  }
+
+  .fade-leave-active{
+    transition: all .3s subic-bezier(1.0,0.5,0.8,1.0);
+  }
+
+  .fade-enter, .fade-leave{
+    transform :translate(-400px);
+    opacity:0;
   }
 
   [v-cloak] {
     display: none;
   }
+
 </style>

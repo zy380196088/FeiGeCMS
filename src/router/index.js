@@ -10,7 +10,7 @@ import PublicOpinionMonitor from '@/views/monitor/index'
 import DataCenter from '@/views/dataCenter/index'
 import Knowledge from '@/views/knowledge/index'
 import Media from '@/views/media/index.vue'
-import System from '@/views/media/index.vue'
+import System from '@/views/system/index.vue'
 import Layout from '@/views/layout/Layout.vue'
 
 
@@ -86,6 +86,14 @@ export const constantRouterMap = [{
                 component: DataCenter,
             },
             {
+              path: '/System',
+              name: '系统管理',
+              meta: {
+                requireAuth: true, //字段为 true,表示进入这个路由是需要登录的
+              },
+              component: System
+            },
+            {
                 path: '/Knowledge',
                 name: '知识库',
                 meta: {
@@ -108,5 +116,8 @@ export const constantRouterMap = [{
 
 
 export default new Router({
+    mode:'history',
+    base: __dirname,
+    linkActiveClass: "menu-active",
     routes: constantRouterMap
 })
